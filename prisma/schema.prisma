@@ -1,0 +1,24 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model category {
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  category_name String   @unique
+  parent_id     Int   @default(0)
+  //status       status   @default(INACTIVE)
+}
+
+enum status {
+  ACTIVE
+  INACTIVE
+}
